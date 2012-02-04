@@ -1,0 +1,14 @@
+#! /usr/bin/ruby
+require "lib/mark_iv"
+
+code = "QT4e8MJYVhkls.27BL9,.MSqYSi'IUpAJKWg9Ul9p4o8oUoGy'ITd4d0AJVsLQp4kKJB2rz4dxfahwUa\"Wa.MS!k4hs2yY3k8ymnla.MOTxJ6wBM7sC0srXmyAAMl9t\"Wk4hs2yYTtH0vwUZp4a\"WhB2u,o6.!8Zt\"Wf,,eh5tk8WXv9UoM99w2Vr4!.xqA,5MSpWl9p4kJ2oUg'6evkEiQhC'd5d4k0qA'24nEqhtAQmy37il9p4o8vdoVr!xWSkEDn?,iZpw24kF\"fhGJZMI8nkI"
+valid_wheel_positions = []
+MarkIV.keyboard.length.times do |w1|
+  MarkIV.keyboard.length.times do |w2|
+    valid_wheel_positions << [w1, w2] if MarkIV.new(w1, w2).decrypt("QT4e8MJYVhkls.27BL9") == "We must defend Furl"
+  end
+end
+puts valid_wheel_positions.inspect
+valid_wheel_positions.each do |w1, w2|
+  puts MarkIV.new(w1, w2).decrypt(code)
+end
